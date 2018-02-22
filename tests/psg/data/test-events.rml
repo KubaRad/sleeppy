@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PatientStudy StudyType="PSG" State="Scoring" EncryptionType="3" Version="7" xmlns:ce="http://www.respironics.com/CustomEventTypeDefs.xsd" xmlns:ac="http://www.respironics.com/AcquisitionCommentDefs.xsd" xmlns:ao="http://www.respironics.com/AnalysisOptions.xsd" xmlns:rc="http://www.respironics.com/ReportCalcOptions.xsd" xmlns:ef="http://www.respironics.com/EventFilters.xsd" xmlns="http://www.respironics.com/PatientStudy.xsd">
+   <Patient PatientType="Adult">
+      <PatientID>9GMxR2MuAwwOxyr6WYf9jA==</PatientID>
+      <ContactInfo>
+         <FirstName>halCH84HU+A=</FirstName>
+         <LastName>CvBmcSeV7Ng=</LastName>
+         <MiddleName />
+      </ContactInfo>
+      <BirthDate>/93mRoP5uppcUKaXVpnm/A==</BirthDate>
+      <Gender>Male</Gender>
+   </Patient>
+   <ChannelConfig>
+      <Channels>
+         <Channel EdfSignal="0" UseForAnalysis="true" DecimalDigits="1">
+            <Label>SpO2</Label>
+         </Channel>
+         <Channel EdfSignal="1" UseForAnalysis="true" DecimalDigits="1">
+            <Label>PulseRate</Label>
+         </Channel>
+      </Channels>
+   </ChannelConfig>
+   <Acquisition>
+      <AcqNumber>131</AcqNumber>
+      <Device DeviceType="EdfImport">
+         <SerialNumber>Edf-127.0.0.1</SerialNumber>
+      </Device>
+      <Sessions>
+         <Session>
+            <RecordingStart>2015-12-14T21:27:22</RecordingStart>
+            <Duration>27596</Duration>
+            <LightsOff>0</LightsOff>
+            <Segments>
+               <Segment>
+                  <StartTime>2015-12-14T21:27:22</StartTime>
+                  <Duration>27596</Duration>
+               </Segment>
+            </Segments>
+         </Session>
+      </Sessions>
+   </Acquisition>
+   <CustomEventTypeDefs />
+   <AcquisitionCommentDefs />
+   <ScoringData>
+      <LastModified>2018-02-05T19:13:41</LastModified>
+      <Events>
+         <Event Family="User" Type="ChannelFail" Start="0" Duration="8" Machine="true">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="0" Duration="9" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="15" Duration="5" Machine="true">
+            <HRBefore>90</HRBefore>
+            <HRExtreme>109</HRExtreme>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="144" Duration="5" Machine="true">
+            <HRBefore>90</HRBefore>
+            <HRExtreme>84</HRExtreme>
+            <O2Before>100</O2Before>
+            <O2Min>97</O2Min>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="263" Duration="5" Machine="true">
+            <HRBefore>84</HRBefore>
+            <HRExtreme>82</HRExtreme>
+            <O2Before>99</O2Before>
+            <O2Min>96</O2Min>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="3575" Duration="9" Machine="true">
+            <HRBefore>76</HRBefore>
+            <HRExtreme>109</HRExtreme>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="5419" Duration="21" Machine="true">
+            <HRBefore>77</HRBefore>
+            <HRExtreme>110</HRExtreme>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="6058" Duration="3" Machine="true">
+            <HRBefore>75</HRBefore>
+            <HRExtreme>103</HRExtreme>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="6076" Duration="11" Machine="true">
+            <HRBefore>86</HRBefore>
+            <HRExtreme>70</HRExtreme>
+            <O2Before>99</O2Before>
+            <O2Min>94</O2Min>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="6096" Duration="9" Machine="true">
+            <HRBefore>81</HRBefore>
+            <HRExtreme>62</HRExtreme>
+            <O2Before>97</O2Before>
+            <O2Min>94</O2Min>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="6546" Duration="17" Machine="true">
+            <HRBefore>74</HRBefore>
+            <HRExtreme>106</HRExtreme>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="7146" Duration="13" Machine="true">
+            <HRBefore>73</HRBefore>
+            <HRExtreme>68</HRExtreme>
+            <O2Before>98</O2Before>
+            <O2Min>94</O2Min>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="8237" Duration="9" Machine="true">
+            <HRBefore>73</HRBefore>
+            <HRExtreme>70</HRExtreme>
+            <O2Before>98</O2Before>
+            <O2Min>95</O2Min>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="10354" Duration="5" Machine="true">
+            <HRBefore>82</HRBefore>
+            <HRExtreme>75</HRExtreme>
+            <O2Before>99</O2Before>
+            <O2Min>96</O2Min>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="10356" Duration="6" Machine="true">
+            <HRBefore>74</HRBefore>
+            <HRExtreme>105</HRExtreme>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="11232" Duration="3" Machine="true">
+            <HRBefore>78</HRBefore>
+            <HRExtreme>102</HRExtreme>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="11854" Duration="14" Machine="true">
+            <HRBefore>74</HRBefore>
+            <HRExtreme>85</HRExtreme>
+            <O2Before>98</O2Before>
+            <O2Min>87</O2Min>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="11868" Duration="16" Machine="true">
+            <HRBefore>76</HRBefore>
+            <HRExtreme>109</HRExtreme>
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="12806" Duration="8" Machine="true">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="12806" Duration="8" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="12814" Duration="6">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="12814" Duration="6.5">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="12906" Duration="12" Machine="true">
+            <HRBefore>74</HRBefore>
+            <HRExtreme>70</HRExtreme>
+            <O2Before>95</O2Before>
+            <O2Min>92</O2Min>
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="13040" Duration="11" Machine="true">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="13040" Duration="11" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="13052" Duration="3" Machine="true">
+            <HRBefore>77</HRBefore>
+            <HRExtreme>110</HRExtreme>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="13216" Duration="10" Machine="true">
+            <HRBefore>74</HRBefore>
+            <HRExtreme>71</HRExtreme>
+            <O2Before>94</O2Before>
+            <O2Min>91</O2Min>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="13693" Duration="7" Machine="true">
+            <HRBefore>76</HRBefore>
+            <HRExtreme>111</HRExtreme>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="13707" Duration="6" Machine="true">
+            <HRBefore>76</HRBefore>
+            <HRExtreme>107</HRExtreme>
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="14884" Duration="24.5">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="14902" Duration="6" Machine="true">
+            <HRBefore>71</HRBefore>
+            <HRExtreme>105</HRExtreme>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="14911" Duration="2" Machine="true">
+            <HRBefore>71</HRBefore>
+            <HRExtreme>101</HRExtreme>
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="15900.5" Duration="6.5">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="15987" Duration="12" Machine="true">
+            <HRBefore>82</HRBefore>
+            <HRExtreme>109</HRExtreme>
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="16260.5" Duration="13">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="16796" Duration="6" Machine="true">
+            <HRBefore>85</HRBefore>
+            <HRExtreme>73</HRExtreme>
+            <O2Before>97</O2Before>
+            <O2Min>94</O2Min>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="16952" Duration="5" Machine="true">
+            <HRBefore>83</HRBefore>
+            <HRExtreme>77</HRExtreme>
+            <O2Before>98</O2Before>
+            <O2Min>93</O2Min>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="17391" Duration="24" Machine="true">
+            <HRBefore>75</HRBefore>
+            <HRExtreme>71</HRExtreme>
+            <O2Before>97</O2Before>
+            <O2Min>93</O2Min>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="17579" Duration="2" Machine="true">
+            <HRBefore>80</HRBefore>
+            <HRExtreme>102</HRExtreme>
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="17768.5" Duration="19">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="18020" Duration="8" Machine="true">
+            <HRBefore>77</HRBefore>
+            <HRExtreme>64</HRExtreme>
+            <O2Before>96</O2Before>
+            <O2Min>93</O2Min>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="21076" Duration="12" Machine="true">
+            <HRBefore>79</HRBefore>
+            <HRExtreme>76</HRExtreme>
+            <O2Before>96</O2Before>
+            <O2Min>90</O2Min>
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="21091.5" Duration="11">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22295.5" Duration="10.5">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22295.5" Duration="10.5">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22306" Duration="21" Machine="true">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22306" Duration="22" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22327" Duration="613">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22328" Duration="612">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22940" Duration="9" Machine="true">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22940" Duration="19" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22949" Duration="2247">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="22959" Duration="725.5">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="23685" Duration="513">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25196" Duration="115" Machine="true">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25196" Duration="45" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25241" Duration="17">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25258" Duration="38" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25296" Duration="14">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25310" Duration="17">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25311" Duration="16">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25327" Duration="31" Machine="true">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25327" Duration="24" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25351" Duration="98">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25358" Duration="91">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25449" Duration="19" Machine="true">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25449" Duration="19" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25468" Duration="2">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25468" Duration="2">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25470" Duration="17" Machine="true">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25470" Duration="14" Machine="true">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25484" Duration="18">
+            <ChannelFail EdfSignal="1" />
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25487" Duration="15">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="25515" Duration="3" Machine="true">
+            <HRBefore>35</HRBefore>
+            <HRExtreme>103</HRExtreme>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="25728" Duration="4" Machine="true">
+            <HRBefore>85</HRBefore>
+            <HRExtreme>77</HRExtreme>
+            <O2Before>99</O2Before>
+            <O2Min>95</O2Min>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="25731" Duration="17" Machine="true">
+            <HRBefore>77</HRBefore>
+            <HRExtreme>117</HRExtreme>
+         </Event>
+         <Event Family="User" Type="ChannelFail" Start="25835" Duration="10">
+            <ChannelFail EdfSignal="0" />
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="25846" Duration="10" Machine="true">
+            <HRBefore>78</HRBefore>
+            <HRExtreme>107</HRExtreme>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="25871" Duration="3" Machine="true">
+            <HRBefore>80</HRBefore>
+            <HRExtreme>102</HRExtreme>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="26122" Duration="3" Machine="true">
+            <HRBefore>78</HRBefore>
+            <HRExtreme>104</HRExtreme>
+         </Event>
+         <Event Family="Cardiac" Type="Tachycardia" Start="26373" Duration="4" Machine="true">
+            <HRBefore>75</HRBefore>
+            <HRExtreme>106</HRExtreme>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="26399" Duration="8" Machine="true">
+            <HRBefore>83</HRBefore>
+            <HRExtreme>71</HRExtreme>
+            <O2Before>100</O2Before>
+            <O2Min>94</O2Min>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="27225" Duration="8" Machine="true">
+            <HRBefore>77</HRBefore>
+            <HRExtreme>78</HRExtreme>
+            <O2Before>100</O2Before>
+            <O2Min>97</O2Min>
+         </Event>
+         <Event Family="SpO2" Type="RelativeDesaturation" Start="27315" Duration="7" Machine="true">
+            <HRBefore>81</HRBefore>
+            <HRExtreme>74</HRExtreme>
+            <O2Before>99</O2Before>
+            <O2Min>96</O2Min>
+         </Event>
+      </Events>
+      <StagingData StagingDisplay="Pneumo">
+         <MachineStaging>
+            <NeuroAdultAASMStaging>
+               <Stage Type="NonREM2" Start="0" />
+               <Stage Type="NotScored" Start="27594" />
+            </NeuroAdultAASMStaging>
+         </MachineStaging>
+      </StagingData>
+   </ScoringData>
+   <AnalysisOptions>
+      <ao:GenericOptions>
+         <ao:EventTypeAssignments>
+            <ao:EventTypeAssignment EventType="CentralApnea" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="ObstructiveApnea" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="MixedApnea" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="Hypopnea" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="PeriodicRespiration" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="Bradycardia" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="Tachycardia" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="LongRR" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="PttDrop" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="RelativeDesaturation" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="Snore" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="Arousal" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="LegMovement" ImplementationName="Standard" />
+            <ao:EventTypeAssignment EventType="pHDrop" ImplementationName="Standard" />
+         </ao:EventTypeAssignments>
+         <ao:SleepStagingAssignment ImplementationName="Standard" />
+      </ao:GenericOptions>
+   </AnalysisOptions>
+   <ReportCalcOptions>
+      <rc:HRDropThreshold>12.5</rc:HRDropThreshold>
+      <rc:SpO2DropThreshold>3</rc:SpO2DropThreshold>
+      <rc:OptimizedPressureThreshold>90</rc:OptimizedPressureThreshold>
+      <rc:AdditionalSpO2Level>0</rc:AdditionalSpO2Level>
+      <rc:AdditionalEtCO2Level>0</rc:AdditionalEtCO2Level>
+      <rc:PLMMaxPeriod>90</rc:PLMMaxPeriod>
+      <rc:PLMMinPeriod>5</rc:PLMMinPeriod>
+      <rc:PLMMinNumber>4</rc:PLMMinNumber>
+      <rc:MaxArousalAssocTime>6</rc:MaxArousalAssocTime>
+      <rc:EventPriorities>
+         <rc:EventArousalAssoc EventArousalAssocType="RespiratoryArousal" />
+         <rc:EventArousalAssoc EventArousalAssocType="LegMovementArousal" />
+         <rc:EventArousalAssoc EventArousalAssocType="SnoreArousal" />
+      </rc:EventPriorities>
+   </ReportCalcOptions>
+   <EventFilters>
+      <ef:CAMinDur>10</ef:CAMinDur>
+      <ef:OAMinDur>10</ef:OAMinDur>
+      <ef:MAMinDur>10</ef:MAMinDur>
+      <ef:HypMinDur>10</ef:HypMinDur>
+      <ef:ConfirmHypsWithDesatsAndOrArousals>true</ef:ConfirmHypsWithDesatsAndOrArousals>
+      <ef:UseAutonomousResponsesForEegArousal>false</ef:UseAutonomousResponsesForEegArousal>
+      <ef:RequiredHrIncreaseForAutonomousResponse>5</ef:RequiredHrIncreaseForAutonomousResponse>
+      <ef:ReraMinDur>10</ef:ReraMinDur>
+      <ef:BradyMinDur>5</ef:BradyMinDur>
+      <ef:TachyMinDur>5</ef:TachyMinDur>
+      <ef:PTTDropMinDecrease>20</ef:PTTDropMinDecrease>
+      <ef:MinRelativeSpO2Drop>3</ef:MinRelativeSpO2Drop>
+      <ef:KeepEventsInWake>true</ef:KeepEventsInWake>
+      <ef:KeepLegMvtEventsInWake>false</ef:KeepLegMvtEventsInWake>
+      <ef:FilterLegMvtEventsNearRespEvents>true</ef:FilterLegMvtEventsNearRespEvents>
+      <ef:LegMvtEventDurationFromRespEvent>0.5</ef:LegMvtEventDurationFromRespEvent>
+      <ef:FilterLegMvtEventsBetweenRespEvents>false</ef:FilterLegMvtEventsBetweenRespEvents>
+      <ef:FilterLegMvtEventsNotPLMs>false</ef:FilterLegMvtEventsNotPLMs>
+      <ef:DisallowOverlappingLegMvtEvents>true</ef:DisallowOverlappingLegMvtEvents>
+   </EventFilters>
+   <TrendChannelMappings>
+      <TrendChannelMapping TrendEdfSignal="0">
+         <EdfSignals>
+            <EdfSignal>0</EdfSignal>
+         </EdfSignals>
+      </TrendChannelMapping>
+      <TrendChannelMapping TrendEdfSignal="1">
+         <EdfSignals>
+            <EdfSignal>1</EdfSignal>
+         </EdfSignals>
+      </TrendChannelMapping>
+      <TrendChannelMapping TrendEdfSignal="2">
+         <EdfSignals>
+            <EdfSignal>0</EdfSignal>
+         </EdfSignals>
+      </TrendChannelMapping>
+      <TrendChannelMapping TrendEdfSignal="3">
+         <EdfSignals>
+            <EdfSignal>1</EdfSignal>
+         </EdfSignals>
+      </TrendChannelMapping>
+      <TrendChannelMapping TrendEdfSignal="4">
+         <EdfSignals>
+            <EdfSignal>1</EdfSignal>
+         </EdfSignals>
+      </TrendChannelMapping>
+   </TrendChannelMappings>
+</PatientStudy>
