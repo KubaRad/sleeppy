@@ -136,3 +136,47 @@ def signal_amplitude(x, sampf, max_dist=0.3, addpulse=True):
     while nglues > 0:
         nglues, glued = _glue_candidates(glued, sampf, max_dist)
     return add_pulse_points(x, dx, glued, sampf) if addpulse else glued
+
+
+def _pp_top(amp):
+    return [x.max_ind for x in amp]
+
+
+def _pp_bottom(amp):
+    return [x.min_ind for x in amp]
+
+
+def _pp_a25(amp):
+    return [x.amp25_ind for x in amp]
+
+
+def _pp_a50(amp):
+    return [x.amp50_ind for x in amp]
+
+
+def _pp_maxslope(amp):
+    return [x.max_slope_ind for x in amp]
+
+
+
+_PULSE_POINTS_SWITCHER={
+    'top': _pp_top,
+    'bottom': _pp_bottom,
+    'a25': _pp_a25,
+    'a50': _pp_a50,
+    'maxslope': _pp_maxslope
+}
+
+
+def calculate_pulse(amplitude, sampf, pulse_type='a25'):
+    func = _PULSE_POINTS_SWITCHER.get(pulse_type, lambda: [])
+    pulse_points = func(amplitude)
+    if len(pulse_points) > 1:
+        pulse = []
+        for r1, r2 in zip(pulse_points[0:-2], pulse_points[1:]):
+            if r1 is not None and r2 is not None:
+                pulse.append((r2-r1)/sampf)
+        return np.array(pulse)
+    else:
+        np.array([])
+

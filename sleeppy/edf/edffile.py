@@ -141,7 +141,8 @@ class Header(namedtuple('Header', _HEADER_FIELD_NAMES)):
         return b''.join([hb, sb])
 
     def find_signal_index(self, signal_label):
-        return [x.label for x in self.signal_defs].index(signal_label)
+        labels = [x.label for x in self.signal_defs]
+        return labels.index(signal_label) if signal_label in labels else None
 
 
 def create_header_from_stream(sf):

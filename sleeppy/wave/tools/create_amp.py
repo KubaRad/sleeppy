@@ -1,6 +1,6 @@
 import sys
-import edftools.edf.edffile as edf
-from signaltools.wave.amplitude import *
+import sleeppy.edf.edffile as edf
+from ..amplitude import *
 
 if __name__ == '__main__':
     file_name = sys.argv[1]

@@ -1,7 +1,7 @@
 __author__ = 'Kuba Radliński'
 
 import sys
-from sleepwareg3.rmlfile import read_rml_file
+from ..rmlfile import read_rml_file
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:

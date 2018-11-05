@@ -24,7 +24,7 @@ def _read_channel_config(xmldoc):
     return channels
 
 
-RecordingData = namedtuple('RecordingData', ['start_time', 'end_time', 'duration', 'lights_off_time', 'lights_on_time', 'epochs_start'])
+RecordingData = namedtuple('RecordingData', ['start_time', 'end_time', 'duration', 'lights_off_time', 'lights_off_delta', 'lights_on_time', 'lights_on_delta', 'epochs_start'])
 
 
 def _read_recording_data(xmldoc):
@@ -53,7 +53,11 @@ def _read_recording_data(xmldoc):
     if _start_time is not None and _lights_on_delta is not None:
         _lights_on_time = _start_time + _lights_on_delta
     _epochs_start = _start_time
-    return RecordingData(_start_time, _end_time, _duration_delta, _lights_off_time, _lights_on_time, _epochs_start)
+    return RecordingData(_start_time, _end_time, _duration_delta, _lights_off_time,
+                         _lights_off_delta.total_seconds() if _lights_off_delta is not None else None,
+                         _lights_on_time,
+                         _lights_on_delta.total_seconds() if _lights_on_delta is not None else None,
+                         _epochs_start)
 
 
 Event = namedtuple('Event', ['family', 'event_type', 'start_time', 'end_time', 'duration'])
@@ -98,10 +102,18 @@ def _create_event_from_node(x, recording_start_time):
 
 
 Stage = namedtuple('Stage',['stage_type', 'start_time', 'end_time', 'duration'])
-ScoringData = namedtuple('ScoringData', ['events', 'staging', 'block_staging'])
+ScoringData = namedtuple('ScoringData', ['events', 'staging', 'block_staging', 'machine_staging', 'machine_block_staging','isr_staging', 'isr_block_staging', 'isr_machine_staging', 'isr_machine_block_staging'])
 
 
 def _read_scoring_data(xmldoc, recording_start_time, recording_duration, epochs_start_time=timedelta(seconds=0), relative=True):
+    stages = []
+    block_stages = []
+    machine_stages = []
+    machine_block_stages = []
+    isr_stages = []
+    isr_block_stages = []
+    isr_machine_stages = []
+    isr_machine_block_stages = []
     evdl = [x for x in xmldoc.getElementsByTagName('ScoringData')[0].childNodes if x.nodeType == Node.ELEMENT_NODE and x.localName == 'Events']
     if len(evdl) > 0:
         events_data = evdl[0]
@@ -109,58 +121,80 @@ def _read_scoring_data(xmldoc, recording_start_time, recording_duration, epochs_
     else:
         events_list = []
 
-    stages = []
-    block_stages = []
-
     stgd = [x for x in xmldoc.getElementsByTagName('ScoringData')[0].childNodes if x.nodeType == Node.ELEMENT_NODE and x.localName == 'StagingData']
 
     if len(stgd) > 0:
         staging_data = stgd[0]
-        ustgd = [x for x in staging_data.childNodes if x.nodeType == Node.ELEMENT_NODE and x.localName == 'UserStaging']
-        if len(ustgd) > 0:
-            user_staging = ustgd[0]
-            aastgd = [x for x in user_staging.childNodes if x.nodeType == Node.ELEMENT_NODE and x.localName == 'NeuroAdultAASMStaging']
-            if len(aastgd) > 0:
-                aasm_adult_staging = aastgd[0]
-                g3_stages = [x for x in aasm_adult_staging.childNodes if x.nodeType == Node.ELEMENT_NODE and x.localName == 'Stage']
-                previous_stage = 'NotScored'
-                previous_end = 0
-                epoch = 0
-                for g3s in g3_stages:
-                    start = int(g3s.getAttribute('Start'))
-                    duration = timedelta
-                    if previous_end is not None and start > previous_end:
-                        while start > previous_end:
-                            epoch += 1
-                            start_time = epochs_start_time+timedelta(seconds=previous_end)
-                            end_time = start_time+timedelta(seconds=30)
-                            stages.append(Stage(previous_stage, start_time, end_time, timedelta(seconds=30)))
-                            previous_end += 30
-                    epoch += 1
-                    start_time = epochs_start_time+timedelta(seconds=start)
-                    stage = g3s.getAttribute('Type')
-                    end_time = start_time+timedelta(seconds=30)
-                    stages.append(Stage(stage, start_time, end_time, timedelta(seconds=30)))
-                    previous_end += 30
-                    previous_stage = stage
-                while previous_end < recording_duration.total_seconds():
-                    epoch += 1
-                    start_time = epochs_start_time+timedelta(seconds=previous_end)
-                    end_time = start_time+timedelta(seconds=30)
-                    stages.append(Stage(previous_stage, start_time, end_time, timedelta(seconds=30)))
-                    previous_end += 30
-                previous_stage = g3_stages[0].getAttribute('Type')
-                previous_start = timedelta(seconds=int(g3_stages[0].getAttribute('Start')))
-                for g3s in g3_stages[1:]:
-                    stage = g3s.getAttribute('Type')
-                    start = timedelta(seconds=int(g3s.getAttribute('Start')))
-                    block_stages.append(Stage(previous_stage, previous_start, start, start-previous_start))
-                    previous_stage = stage
-                    previous_start = start
-                d = (recording_duration-previous_start).total_seconds()
-                duration = timedelta(seconds=(d//30)*30)
-                block_stages.append(Stage(previous_stage, previous_start, recording_duration, duration))
-    return ScoringData(events_list, stages, block_stages)
+
+        stages, block_stages = _extract_staging(epochs_start_time, recording_duration, staging_data)
+        machine_stages, machine_block_stages = _extract_staging(epochs_start_time, recording_duration, staging_data, 'MachineStaging')
+
+    if len(xmldoc.getElementsByTagName('ISRScoringData'))>0:
+        isr_scorer = [x for x in xmldoc.getElementsByTagName('ISRScoringData')[0].childNodes if x.nodeType == Node.ELEMENT_NODE and x.localName == 'Scorer']
+        if len(isr_scorer) > 0:
+            isr_scoring = [x for x in isr_scorer[0].childNodes if x.nodeType == Node.ELEMENT_NODE and x.localName == 'ScoringData']
+            if len(isr_scoring)>0:
+                isr_stgd = [x for x in isr_scoring[0].childNodes if x.nodeType == Node.ELEMENT_NODE and x.localName == 'StagingData']
+                if len(isr_stgd) > 0:
+                    isr_staging_data = isr_stgd[0]
+
+                    isr_stages, isr_block_stages = _extract_staging(epochs_start_time, recording_duration, isr_staging_data)
+                    isr_machine_stages, isr_machine_block_stages = _extract_staging(epochs_start_time, recording_duration, isr_staging_data, 'MachineStaging')
+
+
+    return ScoringData(events_list, stages, block_stages, machine_stages, machine_block_stages, isr_stages, isr_block_stages, isr_machine_stages, isr_machine_block_stages)
+
+
+def _extract_staging(epochs_start_time, recording_duration, staging_data, staging_source='UserStaging'):
+    stages = []
+    block_stages = []
+    ustgd = [x for x in staging_data.childNodes if x.nodeType == Node.ELEMENT_NODE and x.localName == staging_source]
+    if len(ustgd) > 0:
+        user_staging = ustgd[0]
+        aastgd = [x for x in user_staging.childNodes if
+                  x.nodeType == Node.ELEMENT_NODE and x.localName == 'NeuroAdultAASMStaging']
+        if len(aastgd) > 0:
+            aasm_adult_staging = aastgd[0]
+            g3_stages = [x for x in aasm_adult_staging.childNodes if
+                         x.nodeType == Node.ELEMENT_NODE and x.localName == 'Stage']
+            previous_stage = 'NotScored'
+            previous_end = 0
+            epoch = 0
+            for g3s in g3_stages:
+                start = int(g3s.getAttribute('Start'))
+                duration = timedelta
+                if previous_end is not None and start > previous_end:
+                    while start > previous_end:
+                        epoch += 1
+                        start_time = epochs_start_time + timedelta(seconds=previous_end)
+                        end_time = start_time + timedelta(seconds=30)
+                        stages.append(Stage(previous_stage, start_time, end_time, timedelta(seconds=30)))
+                        previous_end += 30
+                epoch += 1
+                start_time = epochs_start_time + timedelta(seconds=start)
+                stage = g3s.getAttribute('Type')
+                end_time = start_time + timedelta(seconds=30)
+                stages.append(Stage(stage, start_time, end_time, timedelta(seconds=30)))
+                previous_end += 30
+                previous_stage = stage
+            while previous_end < recording_duration.total_seconds():
+                epoch += 1
+                start_time = epochs_start_time + timedelta(seconds=previous_end)
+                end_time = start_time + timedelta(seconds=30)
+                stages.append(Stage(previous_stage, start_time, end_time, timedelta(seconds=30)))
+                previous_end += 30
+            previous_stage = g3_stages[0].getAttribute('Type')
+            previous_start = timedelta(seconds=int(g3_stages[0].getAttribute('Start')))
+            for g3s in g3_stages[1:]:
+                stage = g3s.getAttribute('Type')
+                start = timedelta(seconds=int(g3s.getAttribute('Start')))
+                block_stages.append(Stage(previous_stage, previous_start, start, start - previous_start))
+                previous_stage = stage
+                previous_start = start
+            d = (recording_duration - previous_start).total_seconds()
+            duration = timedelta(seconds=(d // 30) * 30)
+            block_stages.append(Stage(previous_stage, previous_start, recording_duration, duration))
+    return stages, block_stages
 
 
 RmlFile = namedtuple('RmlFile', ['channels_config','recording_data', 'scoring_data'])
